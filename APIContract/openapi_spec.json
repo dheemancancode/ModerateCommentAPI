@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "ModerateReview API",
+    "description": "Target.com allows our customers to post comment or feedback on specific products in the product details page.These comments are visible to all other customers. Develop a REST API to moderate/validate the comment text to prevent customers from posting objectionable content. The REST API is expected to take a piece of text as an input and respond with feedback regarding objectionable content.",
+    "version": "1.0",
+    "contact": {
+      "name": "ModerateReview API",
+      "email": "ghoshdhiman93@gmail.com"
+    },
+    "license": {
+      "name": "CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/reviews": {
+      "get": {
+        "tags": [
+          "Moderate Review"
+        ],
+        "summary": "Calls Moderate Review for a single text review.",
+        "description": "Takes the text of the product review and checks for objectionable content. Gives feedback based on the content.",
+        "operationId": "ModerateReview",
+        "parameters": [
+          {
+            "name": "review_text",
+            "in": "query",
+            "description": "**Product Review**. *Example: Helped me a lot with household chores. Good quality!*. You can call by the text of the product review. The API responds with a feedback about the content of the review. For the query value, give the text of the product review.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Content OK"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
